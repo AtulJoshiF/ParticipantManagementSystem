@@ -3,6 +3,12 @@ from database import Base
 from sqlalchemy.orm import relationship
 
 
+"""
+    A many to many relationship between the courses table and student table is 
+    established by using the junction table student_course
+"""
+
+
 class Course(Base):
     __tablename__ = 'courses'
 

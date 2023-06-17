@@ -26,6 +26,13 @@ ALGORITHM = 'HS256'
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
+"""
+    Students can register and login through the following post methods.
+    JWT are used for authorization and authentication of students.
+    Email is considered to be unique and used for logging in.
+"""
+
+
 class Token(BaseModel):
     access_token: str
     token_type: str

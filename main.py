@@ -46,6 +46,11 @@ class AddCourse(BaseModel):
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
+"""
+    All the get methods are configured below.
+"""
+
+
 @app.get('/', status_code=status.HTTP_200_OK)
 async def get_all_courses(db: db_dependency):
     courses = db.query(Course).all()
@@ -86,6 +91,13 @@ async def get_students_enrolled_for_the_course(db: db_dependency, course_id: int
         return {"message": 'no students enrolled'}
     students_enrolled_structured = [{'id': student_course.student.id, 'name': student_course.student.name, 'email': student_course.student.email} for student_course in course.students]
     return {'course': [{'id': course.id, 'name': course.name}], 'students_enrolled': students_enrolled_structured}
+
+
+"""
+    The below get method is used to create courses. As the aim of the task is to 
+    manage the students enrolled in the courses, the below method is only used to
+    add the courses in the courses table and then being commented.
+"""
 
 
 # @app.post('/add_course',status_code=status.HTTP_201_CREATED)

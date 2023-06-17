@@ -24,6 +24,12 @@ db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 
+"""
+    A student can delete his registry.
+    All enrolled courses by the particular student will also be unenrolled.
+"""
+
+
 @router.delete("/student", status_code=status.HTTP_200_OK)
 async def delete_student(db: db_dependency, student: user_dependency):
     if student is None:

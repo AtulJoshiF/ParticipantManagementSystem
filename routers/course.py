@@ -26,6 +26,13 @@ db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 
+"""
+    A student can enroll for atmost two courses after logging in.
+    A course can have atmost 10 participants.
+    A student can unenroll too.
+"""
+
+
 @router.post('/enroll', status_code=status.HTTP_200_OK)
 async def enroll_for_course(db: db_dependency, student: user_dependency, course: str = Form(...)):
     if student is None:
